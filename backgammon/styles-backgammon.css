@@ -1,0 +1,174 @@
+html {
+  background: linear-gradient(to left, rgb(0, 36, 90), rgb(0, 114, 134));
+}
+.button {
+  background-color: rgb(255, 255, 255, 0.8);
+  font-size: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+}
+.home {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  /* top: 30%; */
+}
+
+/* 
+.test {
+  background-color: rgb(255, 255, 255);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 36px;
+}
+/* GAME FIELD*/
+.gameplay {
+  position: absolute;
+  width: 900px;
+  height: 200px;
+  background-color: rgb(255, 255, 255, 0.1);
+  border-radius: 5px;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.player {
+  width: 50%;
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+}
+
+.player1 {
+  position: absolute;
+  left: 0px;
+  background-color: rgb(255, 255, 255, 0.2);
+}
+.player2 {
+  position: absolute;
+  right: 0px;
+  background-color: rgb(255, 255, 255, 0.2);
+}
+
+.name {
+  position: absolute;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 30px;
+  text-align: center;
+  width: 150px;
+  height: 70px;
+  top: 10%;
+}
+
+.left {
+  position: absolute;
+  left: 20%;
+}
+
+.right {
+  position: absolute;
+  right: 20%;
+}
+
+/* DICES*/
+.dices {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  width: 300px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  top: 30%;
+
+}
+
+.dice {
+  width: 100px;
+  height: 100px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px rgb(44, 44, 44);
+  position: relative;
+  visibility: hidden;
+}
+#black-dice {
+  background: rgb(0, 0, 0);
+  /* visibility: hidden; */
+}
+
+#white-dice {
+  background: rgb(255, 255, 255);
+  /* visibility: hidden; */
+}
+/* .dot1,
+.dot2 {
+  visibility: hidden;
+} */
+#dot01,
+#dot11 {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  /* visibility: hidden; */
+}
+#dot02,
+#dot12 {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%);
+  /* visibility: hidden; */
+}
+#dot03,
+#dot13 {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  /* visibility: hidden; */
+}
+#dot04,
+#dot14 {
+  position: absolute;
+  bottom: 10%;
+  left: 10%;
+  /* visibility: hidden; */
+}
+#dot06,
+#dot16 {
+  position: absolute;
+  bottom: 10%;
+  right: 10%;
+  /* visibility: hidden; */
+}
+#dot05,
+#dot15 {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translate(-50%);
+  /* visibility: hidden; */
+}
+#dot07,
+#dot17 {
+  position: absolute;
+  bottom: 40%;
+  left: 50%;
+  transform: translate(-50%);
+  /* visibility: hidden; */
+}
+
+/* WINNER */
+.winner {
+  right: 50%;
+  margin-top: 5%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 40px;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+}
+.current-player {
+  visibility: hidden;
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Game</title>
+    <link rel="stylesheet" href="styles-backgammon.css" />
+  </head>
+  <body>
+    <div>
+      <div class="home">
+        <button id="home" class="button" onclick="location.href='../index/index.html'">
+          🤏
+        </button>
+        <button class="button" id="new-game">🌀</button>
+        <button class="button"id="roll-dice">🎲</button>
+      </div>
+      <div class="winner"></div>
+      <div class="current-player">0</div>
+    </div>
+    <div class="gameplay">
+      <div class="player player1">
+        <div class="name left">PLAYER 1</div>
+      </div>
+      <div class="player player2">
+        <div class="name right">PLAYER 2</div>
+      </div>
+      <div class="buttons-panel">
+
+          <div class="dices">
+            <div id="black-dice" class="dice">
+              <div class="dot0" id="dot01">🟠</div>
+              <div class="dot0" id="dot02">🟠</div>
+              <div class="dot0" id="dot03">🟠</div>
+              <div class="dot0" id="dot04">🟠</div>
+              <div class="dot0" id="dot05">🟠</div>
+              <div class="dot0" id="dot06">🟠</div>
+              <div class="dot0" id="dot07">🟠</div>
+            </div>
+            <div id="white-dice" class="dice">
+              <div class="dot1" id="dot11">🔵</div>
+              <div class="dot1" id="dot12">🔵</div>
+              <div class="dot1" id="dot13">🔵</div>
+              <div class="dot1" id="dot14">🔵</div>
+              <div class="dot1" id="dot15">🔵</div>
+              <div class="dot1" id="dot16">🔵</div>
+              <div class="dot1" id="dot17">🔵</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="script-backgammon.js"></script>
+</html>
