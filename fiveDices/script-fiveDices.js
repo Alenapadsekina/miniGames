@@ -15,37 +15,60 @@ let settings = {
   killerCombo: [],
   winnerCombo: [],
   players: ["Player 1", "Player 2"],
+
 };
+
+// dots
+let dotsOnDice = new Map([
+  [1, {"top": "10%", "left": "10%"}],
+  [2, {"top": "10%", "left": "40%"}],
+  [3, {"top": "10%", "left": "70%"}],
+  [4, {"top": "40%", "left": "40%"}],
+  [5, {"top": "70%", "left": "10%"}],
+  [6, {"top": "70%", "left": "40%"}],
+  [7, {"top": "70%", "left": "70%"}],
+]);
 
 let currentPlayer = document.querySelector(".current-player");
 let players = document.querySelectorAll(".player");
 
-function diceView(diceId, numberOnDice) {
-  let dots = document.querySelectorAll(".dot" + String(diceId));
-  for (let dot of dots) dot.style.visibility = "hidden";
-  function showDots(visibleDots) {
-    dices[diceId].visibility = "visible";
-    for (let dot of visibleDots) dots[dot].style.visibility = "visible";
-  }
+
+let diceView = function(numberOnDice) {
+  let visibleDots = [];
   switch (numberOnDice) {
+    case 0:
+      return visibleDots = [];
     case 1:
-      showDots([6]);
-      break;
+      return visibleDots = [4];
     case 2:
-      showDots([0, 5]);
-      break;
+      return visibleDots = [3, 5];
     case 3:
-      showDots([2, 3, 6]);
-      break;
+      return visibleDots = [1, 4, 7];
     case 4:
-      showDots([0, 2, 3, 5]);
-      break;
+      return visibleDots = [1, 3, 5, 7];
     case 5:
-      showDots([0, 2, 3, 5, 6]);
-      break;
+      return visibleDots = [1, 3, 4, 5, 7];
     case 6:
-      showDots([0, 1, 2, 3, 4, 5]);
-      break;
+      return visibleDots = [1, 2, 3, 5, 6, 7];
+  }
+}
+
+
+let removeDots = function(diceId){
+  while (dices[diceId].firstChild) {
+    dices[diceId].removeChild(dices[diceId].lastChild);
+  }
+}
+
+let displayDots = function(diceId, arr, symbol){
+  for (let [i, index] of arr.entries()){
+    let cell = document.createElement("span");
+    cell.textContent += symbol;
+    cell.id = i;
+    dices[diceId].appendChild(cell);
+    cell.style.position = "absolute";
+    cell.style.top = dotsOnDice.get(index).top;
+    cell.style.left = dotsOnDice.get(index).left;
   }
 }
 
@@ -225,13 +248,19 @@ function defineActivePlayer() {
   return activePlayer;
 }
 
+
 rollDiceBtn.addEventListener("click", function () {
   let numbersArr = randomArray(5);
   let activePlayer = defineActivePlayer();
-  for (let [i, dice] of dices.entries()) {
-    dice.style.visibility = "visible";
-    diceView(i, numbersArr[i]);
-  }
+  for ( let i = 0; i < 5; i++){
+    removeDots(i);
+    dices[i].style.visibility = "visible";
+    let number = numbersArr[i];
+    console.log(number);
+    let array = diceView(number);
+    displayDots(i, array, "⚫");
+    dices[i].value = number;
+    }
   defineCombination(activePlayer, numbersArr);
   newActivePlayer();
   activePlayer.style.backgroundColor = settings.unSelected;

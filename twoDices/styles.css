@@ -20,7 +20,7 @@ html {
 .gameplay {
   position: absolute;
   width: 900px;
-  height: 500px;
+  height: 550px;
   background-color: rgb(255, 255, 255, 0.1);
   border-radius: 5px;
   top: 50%;
@@ -50,7 +50,7 @@ html {
   background: rgb(192, 47, 87);
   bottom: 5%;
   width: 150px;
-  height: 70px;
+  height: 85px;
   border-radius: 5px;
   text-align: center;
   vertical-align: center;
@@ -135,6 +135,22 @@ button {
   bottom: 5%;
 }
 
+#total {
+  position: absolute;
+  width: 900px;
+  height: 50px;
+  background-color: rgb(255, 255, 255, 0.3);
+  bottom: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 32px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 15px;
+}
+
 /* DICES*/
 .dices {
   position: absolute;
@@ -156,68 +172,12 @@ button {
 }
 #black-dice {
   background: rgb(0, 0, 0);
-  /* visibility: hidden; */
+  visibility: hidden;
 }
 
 #white-dice {
   background: rgb(255, 255, 255);
-  /* visibility: hidden; */
-}
-.dot1,
-.dot2 {
   visibility: hidden;
-}
-#dot01,
-#dot11 {
-  position: absolute;
-  top: 10%;
-  left: 10%;
-  /* visibility: hidden; */
-}
-#dot02,
-#dot12 {
-  position: absolute;
-  top: 10%;
-  left: 50%;
-  transform: translate(-50%);
-  /* visibility: hidden; */
-}
-#dot03,
-#dot13 {
-  position: absolute;
-  top: 10%;
-  right: 10%;
-  /* visibility: hidden; */
-}
-#dot04,
-#dot14 {
-  position: absolute;
-  bottom: 10%;
-  left: 10%;
-  /* visibility: hidden; */
-}
-#dot06,
-#dot16 {
-  position: absolute;
-  bottom: 10%;
-  right: 10%;
-  /* visibility: hidden; */
-}
-#dot05,
-#dot15 {
-  position: absolute;
-  bottom: 10%;
-  left: 50%;
-  transform: translate(-50%);
-  /* visibility: hidden; */
-}
-#dot07,
-#dot17 {
-  position: absolute;
-  bottom: 40%;
-  left: 50%;
-  transform: translate(-50%);
-  /* visibility: hidden; */
 }
 
 /* WINNER */

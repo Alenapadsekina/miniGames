@@ -14,6 +14,18 @@ let settings = {
   unSelected: "rgba(255, 255, 255, 0.2)",
   players: ["Player 1", "Player 2"],
 };
+
+// dots
+let dotsOnDice = new Map([
+  [1, {"top": "10%", "left": "10%"}],
+  [2, {"top": "10%", "left": "40%"}],
+  [3, {"top": "10%", "left": "70%"}],
+  [4, {"top": "40%", "left": "40%"}],
+  [5, {"top": "70%", "left": "10%"}],
+  [6, {"top": "70%", "left": "40%"}],
+  [7, {"top": "70%", "left": "70%"}],
+]);
+
 let currentPlayer = document.querySelector(".current-player");
 let players = document.querySelectorAll(".player");
 
@@ -22,35 +34,66 @@ let score = document.querySelectorAll(".score");
 let currentNumber = document.querySelectorAll(".current-number");
 let dice = document.getElementById("dice");
 
-function diceView(numberOnDice) {
-  dice.style.visibility = "hidden";
-  let dots = document.querySelectorAll(".dot");
-  for (let dot of dots) dot.style.visibility = "hidden";
-  function showDots(visibleDots) {
-    dice.style.visibility = "visible";
-    for (let i of visibleDots) dots[i].style.visibility = "visible";
-  }
+let diceView = function(numberOnDice) {
+  dice.style.visibility = "visible";
+  let visibleDots = [];
   switch (numberOnDice) {
+    case 0:
+      return visibleDots = [];
     case 1:
-      showDots([6]);
-      break;
+      return visibleDots = [4];
     case 2:
-      showDots([0, 5]);
-      break;
+      return visibleDots = [3, 5];
     case 3:
-      showDots([2, 3, 6]);
-      break;
+      return visibleDots = [1, 4, 7];
     case 4:
-      showDots([0, 2, 3, 5]);
-      break;
+      return visibleDots = [1, 3, 5, 7];
     case 5:
-      showDots([0, 2, 3, 5, 6]);
-      break;
+      return visibleDots = [1, 3, 4, 5, 7];
     case 6:
-      showDots([0, 1, 2, 3, 4, 5]);
-      break;
+      return visibleDots = [1, 2, 3, 5, 6, 7];
   }
 }
+
+let removeDots = function(){
+  while (dice.firstChild) {
+    dice.removeChild(dice.lastChild);
+  }
+}
+
+let displayDots = function(arr, symbol){
+  for (let [i, index] of arr.entries()){
+    let cell = document.createElement("span");
+    cell.textContent += symbol;
+    cell.id = i;
+    dice.appendChild(cell);
+    cell.style.position = "absolute";
+    cell.style.top = dotsOnDice.get(index).top;
+    cell.style.left = dotsOnDice.get(index).left;
+  }
+}
+
+
+rollDiceBtn.addEventListener("click", function () {
+  removeDots();
+  let activePlayer = defineActivePlayer();
+  let number = Math.trunc(Math.random() * 6 + 1);
+  console.log(number);
+  let array = diceView(number);
+  displayDots(array,"⚫");
+  if (number != 1) {
+    activePlayer.querySelector(".current-number").textContent =
+      Number(activePlayer.querySelector(".current-number").textContent) +
+      number;
+    switchBtn(holdBtn, "on");
+  } else {
+    activePlayer.querySelector(".current-number").textContent = 0;
+    newActivePlayer();
+    activePlayer.style.backgroundColor = settings.unSelected;
+    players[currentPlayer.textContent].style.backgroundColor =
+      settings.selected;
+  }
+});
 
 let switchBtn = function (button, position) {
   if (position == "on") {
@@ -72,8 +115,8 @@ let startGame = function () {
       : (players[i].querySelector(".name").textContent = settings.players[i]);
   }
   diceView(0);
-  dice.value = 0;
   settings.count = 1;
+  dice.style.visibility = "hidden";
   switchBtn(holdBtn, "off");
   switchBtn(rollDiceBtn, "on");
   document.querySelector(".winner").textContent = "";
@@ -98,25 +141,7 @@ function newActivePlayer() {
   switchBtn(holdBtn, "off");
 }
 
-rollDiceBtn.addEventListener("click", function () {
-  let activePlayer = defineActivePlayer();
-  let number = Math.trunc(Math.random() * 6 + 1);
-  console.log(number);
-  dice.value = number;
-  diceView(number);
-  if (number != 1) {
-    activePlayer.querySelector(".current-number").textContent =
-      Number(activePlayer.querySelector(".current-number").textContent) +
-      number;
-    switchBtn(holdBtn, "on");
-  } else {
-    activePlayer.querySelector(".current-number").textContent = 0;
-    newActivePlayer();
-    activePlayer.style.backgroundColor = settings.unSelected;
-    players[currentPlayer.textContent].style.backgroundColor =
-      settings.selected;
-  }
-});
+
 
 // hold
 function youWin(winner) {
